@@ -1,0 +1,87 @@
+<template>
+  <div class="archives-timeline">
+    <timeline-skeleton v-if="loading"></timeline-skeleton>
+    <el-collapse v-else class="timeline-collapse" :value="0" :accordion="true">
+      <el-collapse-item v-for="(value, index) of timeline" :key="value.title"
+                        :title="value.title + '（' + value.nodes.length + '）' " :name="index"
+                        class="timeline-title">
+        <div class="timeline-item" :class="queryDateStr === timeline.timeline ? 'timeline-item-active' : ''"
+             v-for="timeline of value.nodes" :key="timeline.timeline"
+             @click="selectTimeline(timeline.timeline)">
+          {{ timeline.timeline + '（' + timeline.count + '）' }}
+        </div>
+      </el-collapse-item>
+    </el-collapse>
+  </div>
+</template>
+
+<script>
+import TimelineSkeleton from "./TimelineSkeleton";
+
+export default {
+  name: "ArchivesTimeline",
+  data() {
+    return {
+      timeline: Object,
+      queryDateStr: '',
+      loading: false
+    }
+  },
+  components: {
+    TimelineSkeleton
+  },
+  created() {
+    this.queryTimeline();
+  },
+  methods: {
+    queryTimeline() {
+      this.loading = true;
+      this.$api.articleApi.getArchivesTimeline().then(result => {
+        this.timeline = result.data;
+        this.selectDefaultQueryDateStr();
+      }).catch(error => this.$message.error('时间线查询失败')).finally(() => this.loading = false);
+    },
+    selectTimeline(dateStr) {
+      this.queryDateStr = dateStr;
+      this.$emit('query-date', dateStr);
+    },
+    selectDefaultQueryDateStr() {
+      if (!this.timeline.length) {
+        return;
+      }
+      let queryDateStr = this.timeline[0].title;
+      this.selectTimeline(this.timeline[0].nodes[0].timeline);
+    }
+  }
+}
+</script>
+
+<style scoped>
+.archives-timeline {
+  margin-bottom: 30px;
+}
+
+.archives-timeline >>> .el-collapse-item__wrap,
+.archives-timeline >>> .el-collapse-item__header {
+  color: var(--fontColor);
+  background-color: var(--bgColor);
+  border-color: var(--borderColor);
+  font-size: 20px;
+}
+
+.timeline-collapse {
+  border-color: var(--borderColor);
+}
+
+.timeline-item {
+  color: var(--fontColor);
+  padding-left: 20%;
+  margin-top: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.timeline-item-active {
+  color: var(--mainThemeColor);
+}
+</style>

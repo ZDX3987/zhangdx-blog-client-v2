@@ -1,0 +1,130 @@
+<template>
+  <div class="user-center-page">
+    <el-row type="flex" justify="center">
+      <el-col :lg="12" :md="20" :xs="22" :sm="22">
+        <div class="user-center-content">
+          <el-image class="user-cover-image" :src="userCoverImg" fit="cover"></el-image>
+          <div class="user-info mb-4">
+            <el-row>
+              <el-col :md="4" :sm="6" :xs="8">
+                <div class="user-avatar p-1">
+                  <img :src="userInfo.avatar" :alt="userInfo.nickname">
+                </div>
+              </el-col>
+              <el-col :md="16" :sm="13" :xs="11">
+                <div class="user-right-info text-left">
+                  <h4>{{ userInfo.nickname }}</h4>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+          <div>
+            <ul class="pl-0 mb-0 user-profile-tabs">
+              <li v-for="component of componentList" :key="component.no" class="mx-4 tabs-item float-left"
+                  @click="switchComponent(component)" :class="component.no === activeTab ? 'tabs-item-active' : ''">
+                {{ component.text }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="user-profile my-3">
+          <component :is="activeComponentName" :userInfo="userInfo"></component>
+        </div>
+      </el-col>
+    </el-row>
+  </div>
+</template>
+
+<script>
+import AccountSetting from '../components/usercenter/AccountSetting';
+import MyCollection from '@/components/usercenter/MyCollection';
+
+export default {
+  name: "UserCenter",
+  data() {
+    return {
+      userCoverImg: 'https://pic2.zhimg.com/80/v2-262a0b84e2d05c5e431032cbf589e35e_r.jpg',
+      userAvatarImg: 'https://pic2.zhimg.com/v2-f029565d5a67d29343b2f212cd7bf121_xl.jpg',
+      activeTab: 1,
+      componentList: [
+        {no: 1, name: 'MyCollection', text: '收藏'},
+        {no: 2, name: '', text: '评论'},
+        {no: 3, name: 'AccountSetting', text: '账号设置'},
+      ],
+      activeComponentName: 'MyCollection',
+    }
+  },
+  components: {
+    AccountSetting,
+    MyCollection
+  },
+  computed: {
+    userInfo() {
+      return this.$store.state.userInfo;
+    }
+  },
+  methods: {
+    switchComponent(component) {
+      this.activeTab = component.no;
+      this.activeComponentName = component.name;
+    }
+  }
+}
+</script>
+
+<style scoped>
+.user-center-page {
+}
+
+.user-center-content {
+  background-color: var(--bgColor);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.user-cover-image {
+  height: 280px;
+  display: block;
+}
+
+.user-avatar {
+  background-color: var(--bgColor);
+  width: 80%;
+  margin-top: -30%;
+  margin-left: 30px;
+  border-radius: 2px;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+}
+
+.user-right-info h4 {
+  font-weight: 600;
+  color: var(--fontColor);
+}
+
+.user-profile {
+  min-height: 300px;
+  background-color: var(--bgColor);
+}
+
+.user-profile-tabs {
+  list-style: none;
+  min-height: 30px;
+  border-bottom: 1px solid var(--borderColor);
+}
+
+.tabs-item {
+  height: 30px;
+  color: var(--fontColor);
+  cursor: pointer;
+}
+
+.tabs-item-active {
+  font-weight: 600;
+  border-bottom: 2px solid var(--mainThemeColor);
+  color: var(--mainThemeColor);
+}
+</style>

@@ -1,0 +1,24 @@
+html body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  outline: none !important;
+  box-shadow: none !important;
+}
+/*鼠标右键选中内容背景颜色*/
+::selection {
+  background: var(--mainThemeColor) !important;
+    color: #FFF;
+}
+::-moz-selection {
+  background: var(--mainThemeColor) !important;
+    color: #FFF;
+}
+
+/*搜索结果关键字高亮*/
+.search-keyword-highlight {
+    color: var(--mainThemeColor);
+}
