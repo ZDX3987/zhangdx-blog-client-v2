@@ -32,7 +32,7 @@ jobs:
             key: ${{ secrets.SERVER_PRIVATE_KEY }}
             port: 22
             source: dist/**
-            target: /usr/share/nginx/html/admin
+            target: /usr/share/nginx/html/admin/**
 
       - name: Deploy to Server
         uses: appleboy/ssh-action@master
