@@ -18,7 +18,7 @@ export default {
   },
   metaInfo() {
     return {
-      title: this.$route.meta.title + ' - ZHANGDX的博客222',
+      title: this.$route.meta.title + ' - ZHANGDX的博客',
       meta: [
         {
           vmid: 'keywords',

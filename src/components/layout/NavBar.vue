@@ -78,7 +78,7 @@ export default {
   name: "NavBar",
   data() {
     return {
-      title: 'ADX',
+      title: 'ZHANGDX',
       menuList: []
     }
   },
