@@ -25,7 +25,20 @@ jobs:
         run : npm run build
 
       - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v3
+        uses: appleboy/scp-action@master
         with:
-          name: build-artifacts
-          path: dist
+            host: ${{ secrets.SERVER_HOST }}
+            username: ${{ secrets.SERVER_USERNAME }}
+            key: ${{ secrets.SERVER_PRIVATE_KEY }}
+            port: 22
+            source: dist
+            target: /usr/share/nginx/html/admin/
+
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_KEY }}
+          port: 22
+          script: docker restart nginx
