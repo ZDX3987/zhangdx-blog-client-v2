@@ -5,7 +5,7 @@
         我的创建
         <el-button icon="iconfont iconxinwenjianjia" type="text" @click="showEditDialog"></el-button>
       </div>
-      <empty-list v-if="collectionList.length === 0" emptySize="8" description="收藏夹为空哦~" />
+      <empty-list v-if="collectionList.length === 0" :emptySize="8" description="收藏夹为空哦~" />
         <ul class="collection-list">
           <li class="pl-4 pr-3 collection-item" :class="activeCollectionId === item.id ? 'collection-item-active' : ''"
               v-for="(item, index) in collectionList" :key="index" @click="choseCollectionItem(item.id)">
@@ -22,7 +22,7 @@
         </ul>
     </el-aside>
     <el-main>
-      <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
+      <el-tabs v-model="activeName" type="card" @tab-click="">
         <el-tab-pane label="用户管理" name="first">
           <article-list/>
         </el-tab-pane>
@@ -48,6 +48,7 @@ export default {
     return {
       collectionList: [],
       activeCollectionId: 1,
+      activeName: ""
     }
   },
   components: {
@@ -64,7 +65,7 @@ export default {
       this.$api.homepage.getMyCollectionList().then(res => {
         this.collectionList = res.data;
         this.activeCollectionId = this.collectionList[0].id;
-      })
+      }).catch(e => {})
     },
 
     choseCollectionItem(itemId) {

@@ -30,7 +30,7 @@ service.interceptors.response.use(response => {
     },
     error => {
         if (notification && requestNum <= 0) {
-            notification.closeAll();
+            // notification.closeAll();
         }
         let resp = error.response;
         errorHandle(resp);
