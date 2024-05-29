@@ -3,12 +3,12 @@
 <!--    <loading/>-->
     <el-row class="index-content">
       <el-col :xl="{span: 10, offset: 5}" :lg="{span: 13, offset: 3}" :md="{span: 14, offset: 2}"
-              :xs="{span: 22, offset: 1}" :sm="{span: 22, offset: 1}">
+              :xs="{span: 22, offset: 1}" :sm="{span: 22, offset: 1}" class="home_left_col">
         <article-list-tab @change-query-type="changeQueryType"/>
         <article-list :query-cate-id="queryCateId" :query-type="currentQueryType" :page-disabled="true"
                       ref="articleList"/>
       </el-col>
-      <el-col :xl="4" :lg="5" :md="6" :xs="{span: 22, offset: 1}" :sm="{span: 22, offset: 1}" class="ml-lg-3">
+      <el-col :xl="4" :lg="5" :md="6" :xs="{span: 22, offset: 1}" :sm="{span: 22, offset: 1}" class="ml-lg-3 home_right_col">
         <cate-cloud/>
         <topic-side/>
         <friendship-link-side/>
@@ -53,5 +53,11 @@ export default {
 .index-content {
   padding-top: 20px;
   padding-bottom: 20px;
+}
+.home_left_col {
+  min-height: 70em;
+}
+.home_right_col {
+  min-height: 70em;
 }
 </style>

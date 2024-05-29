@@ -7,20 +7,23 @@
       </router-link>
     </div>
     <div class="friendship-link-body py-3">
-      <ul class="other-links pl-2">
+      <ul class="other-links pl-2" v-if="friendshipLinkList.length !== 0">
         <li v-for="(link, i) of friendshipLinkList" :key="i" class="m-3 d-inline-block">
           <a target="_blank" :style="{color: randomColor()}" :href="link.linkUrl">{{ link.linkName }}</a>
         </li>
       </ul>
+      <empty-list v-else :empty-size="8"/>
     </div>
   </div>
 </template>
 
 <script>
 import {randomColor} from '../../util/common-utils';
+import EmptyList from '@/components/common/EmptyList.vue';
 
 export default {
   name: "FriendshipLinkSide",
+  components: {EmptyList},
   data() {
     return {
       friendshipLinkList: []

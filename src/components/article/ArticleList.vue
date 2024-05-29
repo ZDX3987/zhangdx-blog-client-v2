@@ -21,7 +21,6 @@
       </li>
     </ul>
     <empty-list v-else/>
-
   </div>
 </template>
 
@@ -108,6 +107,8 @@ export default {
 .list-content {
   width: 100%;
   background-color: var(--bgColor);
+  padding: 2rem;
+  min-height: 76em;
 }
 
 .article-ul {

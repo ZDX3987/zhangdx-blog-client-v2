@@ -5,22 +5,25 @@
       <el-link :underline="false">共{{cateCloudList.length}}个</el-link>
     </div>
     <div>
-      <svg :height='height' @mousemove='listener($event)'>
+      <svg :height='height' @mousemove='listener($event)' v-if="cateCloudList.length !== 0">
         <router-link :to="{name: 'CateList', params: {id: tag.id}}" v-for='tag in cateCloudList' :key="tag.id">
           <text :x='tag.x' :y='tag.y' :font-size='20 * (600/(600-tag.z))' :fill-opacity='((400+tag.z)/600)' :fill="tag.fill">
             {{ tag.cateName }}
           </text>
         </router-link>
       </svg>
+      <empty-list v-else :empty-size="8"/>
     </div>
   </div>
 </template>
 
 <script>
 import {randomColor} from '../../util/common-utils';
+import EmptyList from '@/components/common/EmptyList.vue';
 
 export default {
   name: "CateCloud",
+  components: {EmptyList},
   data() {
     return {
       width: 300,
