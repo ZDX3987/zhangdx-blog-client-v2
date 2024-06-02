@@ -82,20 +82,20 @@ export default {
       }
     },
     handleScroll() {
-      let scrollTop =
-          window.pageYOffset ||
-          document.documentElement.scrollTop ||
-          document.body.scrollTop;
-      let sharedSideDom = this.$refs.sharedContent;
-      let currentHeight = sharedSideDom.offsetHeight;
-      let articleContentOffsetHeight = $('#article-content')[0].offsetHeight;
-      if (scrollTop >= articleContentOffsetHeight - currentHeight) {
-        sharedSideDom.className = 'shared-content';
-        sharedSideDom.style.top = (articleContentOffsetHeight - currentHeight) + 'px';
-      } else {
-        sharedSideDom.className = 'shared-content-fixed';
-        sharedSideDom.style.top = 'auto';
-      }
+      // let scrollTop =
+      //     window.pageYOffset ||
+      //     document.documentElement.scrollTop ||
+      //     document.body.scrollTop;
+      // let sharedSideDom = this.$refs.sharedContent;
+      // let currentHeight = sharedSideDom.offsetHeight;
+      // let articleContentOffsetHeight = $('#article-content')[0].offsetHeight;
+      // if (scrollTop >= articleContentOffsetHeight - currentHeight) {
+      //   sharedSideDom.className = 'shared-content';
+      //   sharedSideDom.style.top = (articleContentOffsetHeight - currentHeight) + 'px';
+      // } else {
+      //   sharedSideDom.className = 'shared-content-fixed';
+      //   sharedSideDom.style.top = 'auto';
+      // }
     },
     setQueryParams() {
       this.sharedType[0].queryParams = [

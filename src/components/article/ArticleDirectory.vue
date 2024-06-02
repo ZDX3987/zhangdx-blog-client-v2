@@ -33,20 +33,20 @@ export default {
   },
   methods: {
     handleScroll() {
-      let scrollTop =
-          window.pageYOffset ||
-          document.documentElement.scrollTop ||
-          document.body.scrollTop;
-      let directoryContent = this.$refs.directoryContent;
-      let currentHeight = directoryContent.offsetHeight;
-      let articleContentOffsetHeight = $('#article-content')[0].offsetHeight;
-      if (scrollTop >= articleContentOffsetHeight - currentHeight) {
-        directoryContent.className = 'directory-content';
-        directoryContent.style.top = (articleContentOffsetHeight - currentHeight) + 'px';
-      } else {
-        directoryContent.className = 'directory-content-fixed';
-        directoryContent.style.top = 'auto';
-      }
+      // let scrollTop =
+      //     window.pageYOffset ||
+      //     document.documentElement.scrollTop ||
+      //     document.body.scrollTop;
+      // let directoryContent = this.$refs.directoryContent;
+      // let currentHeight = directoryContent.offsetHeight;
+      // let articleContentOffsetHeight = $('#article-content')[0].offsetHeight;
+      // if (scrollTop >= articleContentOffsetHeight - currentHeight) {
+      //   directoryContent.className = 'directory-content';
+      //   directoryContent.style.top = (articleContentOffsetHeight - currentHeight) + 'px';
+      // } else {
+      //   directoryContent.className = 'directory-content-fixed';
+      //   directoryContent.style.top = 'auto';
+      // }
     }
   }
 }

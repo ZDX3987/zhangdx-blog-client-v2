@@ -1,6 +1,6 @@
 import http from '../http';
 
-let url = '/api/client/blog_like';
+let url = '/api/blog_like';
 
 export default {
     like(itemId, operatorId, likeType) {
