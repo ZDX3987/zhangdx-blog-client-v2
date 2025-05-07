@@ -2,15 +2,18 @@
   <div class="footer-content">
     <el-row>
       <el-col :md="12">
-        <ul class="other-links">
-          <li v-for="(link, i) of otherLinks" :key="i">
-            <a target="_blank" :href="link.linkUrl">{{ link.linkName }}</a>
-          </li>
-        </ul>
+<!--        <ul class="other-links">-->
+<!--          <li v-for="(link, i) of otherLinks" :key="i">-->
+<!--            <a target="_blank" :href="link.linkUrl">{{ link.linkName }}</a>-->
+<!--          </li>-->
+<!--        </ul>-->
+        <div class="blog-foot-icon">
+          <img :src="footIconImg" :alt="blogName">
+        </div>
         <p class="copyright">
           <a href="http://beian.miit.gov.cn">豫 ICP 备 20019985 号 - 1</a>
           Copyright © {{ currentYear }}
-          <a href="http://www.zhangdx.cn">ZHANGDX</a>
+          <a href="http://www.zhangdx.cn">{{blogName}}</a>
         </p>
       </el-col>
       <el-col :md="12">
@@ -40,6 +43,8 @@ export default {
   name: "Footer",
   data() {
     return {
+      blogName: "ZHANGDX",
+      footIconImg: 'http://file.zhangdx.cn/asserts/icon.svg',
       currentYear: new Date().getFullYear(),
       otherLinks: [],
       sharedIcons: [
@@ -89,7 +94,9 @@ export default {
 .other-links a {
   color: #fff;
 }
-
+.blog-foot-icon {
+  margin-bottom: 30px;
+}
 .copyright {
   color: rgb(176, 183, 189);
   font-size: 14px;
