@@ -27,8 +27,8 @@
                       :src="article.author.avatar"
                       size="small"
                       class="align-middle"
-                  ></el-avatar>
-                  {{ article.author.username }}
+                  >{{ article.author.nickname }}</el-avatar>
+                  {{ article.author.nickname }}
                 </el-col>
                 <el-col v-if="article.categories.length !==0" :xs="20" :sm="10">
                   <i class="fa fa-tags"></i>
