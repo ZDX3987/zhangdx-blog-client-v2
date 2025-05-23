@@ -19,7 +19,7 @@
         </h2>
         <p v-if="article.digest" class="item-digest text-wrap" v-html="article.digest"></p>
         <div class="item-tags">
-          <p class="item-type">【{{ article.articleType }}】</p>
+          <p class="item-type" v-if="article.articleType">【{{ article.articleType }}】</p>
           <span v-for="(tag, index) of article.categories" :key="tag.id">
                   {{ index != 0 ? '&nbsp;&nbsp;' : '' }}
                   <router-link :to="{name: 'CateList', params: {id: tag.id}}">
